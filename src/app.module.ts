@@ -8,7 +8,6 @@ import { ExamModule } from './exam/exam.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { ManagementModule } from './management/management.module';
-import { Controller } from './.controller';
 
 @Module({
   imports: [
@@ -19,7 +18,7 @@ import { Controller } from './.controller';
     PrismaModule,
     ManagementModule,
   ],
-  controllers: [AppController, Controller],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
