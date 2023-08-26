@@ -42,9 +42,9 @@ export class AuthService {
           email: dto.email,
           username: dto.username,
           password: hash,
-          age: dto.age,
+          age: Number(dto.age),
           name: dto.fullname,
-          phoneNumber: dto.phonenumber,
+          phoneNumber: Number(dto.phonenumber),
         },
       });
       return null;
