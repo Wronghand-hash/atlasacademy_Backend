@@ -23,13 +23,34 @@ export class AuthService {
           password: hash,
         },
       });
-      return user;
+      return null;
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {
           throw new ForbiddenException('credentials already in use');
         }
         throw error;
+      }
+    }
+  }
+
+  async signupWithInfo(dto: AuthDto) {
+    const hash = await argon.hash(dto.password);
+    try {
+      const user = await this.prisma.user.create({
+        data: {
+          email: dto.email,
+          username: dto.username,
+          password: hash,
+          age: dto.age,
+          name: dto.fullname,
+          phoneNumber: dto.phonenumber,
+        },
+      });
+      return null;
+    } catch (error) {
+      if (error) {
+        throw new ForbiddenException('something went wrong');
       }
     }
   }
