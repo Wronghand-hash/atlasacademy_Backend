@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { ForbiddenException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
 import { AuthService } from './auth.services';
@@ -14,7 +14,10 @@ export class LocalStrategy extends PassportStrategy(Strategy, 'local') {
     console.log(username, 'this is user name to be found somewhere ');
     const user = await this.authService.validateUser(userName, password);
     if (!user) {
-      throw new UnauthorizedException();
+      throw new ForbiddenException('نام کاربردی پیدا نشد');
+    }
+    if(!password){
+      throw new ForbiddenException('no pass')
     }
     console.log('user found');
     return user;

@@ -50,9 +50,9 @@ export class AuthService {
       return null;
     } catch (error) {
       if (error.code === 'P2002') {
-        throw new ForbiddenException('credentials already in use');
+        throw new ForbiddenException('نام کاربردی قبلا استفاده شده');
       } else {
-        throw new ForbiddenException(error.code);
+        throw new ForbiddenException('مشخصات ورودی خودتون رو چک کنید');
       }
     }
   }
@@ -88,7 +88,10 @@ export class AuthService {
     });
     const pwMatch = await argon.verify(user.password, password);
     if (!user) {
-      throw new NotAcceptableException('could not find the user');
+      throw new ForbiddenException('could not find the user');
+    }
+    if (!password) {
+      throw new ForbiddenException('no password provided');
     }
     if (user && pwMatch) {
       return {
