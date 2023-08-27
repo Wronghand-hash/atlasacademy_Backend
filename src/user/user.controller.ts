@@ -36,7 +36,7 @@ export class UserController {
     return { msg: req };
   }
 
-  @UseGuards(AuthenticatedGuard, InfoGuard)
+  @UseGuards(AuthenticatedGuard)
   @Get('/myinfo')
   getInfo(@Session() session: Record<string, any>): any {
     return this.userService.getTestResults(session.passport.user.userName);
