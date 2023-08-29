@@ -44,10 +44,9 @@ export class AuthService {
           password: hash,
           age: Number(dto.age),
           name: dto.fullname,
-          phoneNumber: Number(dto.phonenumber),
         },
       });
-      return null;
+      return { msg: 'user signed' };
     } catch (error) {
       if (error.code === 'P2002') {
         throw new ForbiddenException('نام کاربردی قبلا استفاده شده');
