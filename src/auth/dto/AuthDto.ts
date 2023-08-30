@@ -9,7 +9,7 @@ export class AuthDto {
 
   username: string;
 
-  phonenumber: string;
+  phonenumber: number;
 
   age: number;
 
