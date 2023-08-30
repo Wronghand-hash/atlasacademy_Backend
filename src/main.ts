@@ -40,7 +40,7 @@ async function bootstrap() {
       cookie: {
         secure: true,
         httpOnly: true,
-        maxAge: 60000,
+        maxAge: 60000 * 5,
         sameSite: 'none',
         domain: 'auth.atlasacademy.ir',
       },
