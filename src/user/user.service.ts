@@ -42,7 +42,7 @@ export class UserService {
       },
       data: {
         age: Number(dto.age),
-        phoneNumber: Number(dto.phonenumber),
+        phoneNumber: dto.phonenumber,
         name: dto.fullname,
         QnA: dto.QnA,
       },

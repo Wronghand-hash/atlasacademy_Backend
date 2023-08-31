@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -18,17 +15,12 @@ model User {
   name                 String?
   password             String?
   role                 roles    @default(STUDENT)
-  TorrenceTestResult   Int?
   CreativityTestResult Int?
-  phoneNumber          Int?
-  age                  Int?
+  TorrenceTestResult   Int?
   QnA                  String?
-}
-
-enum roles {
-  STUDENT
-  TEACHER
-  ADMIN
+  age                  Int?
+  status               String?
+  phoneNumber          String?
 }
 
 model Exams {
@@ -36,8 +28,8 @@ model Exams {
   createdAt   DateTime   @default(now())
   updateAt    DateTime   @updatedAt
   category_id Int
-  category    Categories @relation(fields: [category_id], references: [id])
   title       String
+  category    Categories @relation(fields: [category_id], references: [id])
 }
 
 model Categories {
@@ -45,5 +37,21 @@ model Categories {
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
   title     String
-  Exams     Exams[]
+
+  Exams Exams[]
+}
+
+model Articles {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  title      String
+  authur     String
+  body       String
+}
+
+enum roles {
+  STUDENT
+  TEACHER
+  ADMIN
 }

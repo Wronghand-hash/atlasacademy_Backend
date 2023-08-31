@@ -42,6 +42,7 @@ export class AuthService {
           email: dto.email,
           username: dto.username,
           password: hash,
+          phoneNumber: dto.phonenumber,
           age: Number(dto.age),
           name: dto.fullname,
         },
