@@ -42,12 +42,37 @@ model Categories {
 }
 
 model Articles {
+  id            Int            @id @default(autoincrement())
+  created_at    DateTime       @default(now())
+  updated_at    DateTime       @updatedAt
+  title         String
+  authur        String
+  first_header  String
+  first_body    String
+  second_header String?
+  second_body   String?
+  third_header  String?
+  third_body    String?
+  ArticleImage  ArticleImage[]
+}
+
+model ArticleImage {
   id         Int      @id @default(autoincrement())
-  created_at DateTime @default(now())
+  filename   String
+  buffer     String
+  article_id Int
+  article    Articles @relation(fields: [article_id], references: [id])
+}
+
+model Schedule {
+  id         Int      @id @default(autoincrement())
+  create_at  DateTime @default(now())
   updated_at DateTime @updatedAt
   title      String
-  authur     String
-  body       String
+  days       String
+  time       String
+  teacher    String
+  level      String
 }
 
 enum roles {
