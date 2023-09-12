@@ -74,10 +74,8 @@ CREATE TABLE "Schedule" (
     "create_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
     "title" TEXT NOT NULL,
-    "days" TEXT NOT NULL,
-    "time" TEXT NOT NULL,
-    "teacher" TEXT NOT NULL,
-    "level" TEXT NOT NULL,
+    "image_buffer" TEXT,
+    "image_name" TEXT,
 
     CONSTRAINT "Schedule_pkey" PRIMARY KEY ("id")
 );

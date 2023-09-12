@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {
   Body,
   Controller,
@@ -54,26 +53,48 @@ export class ManagementController {
   uploadArticleFile(
     @UploadedFile(
       new ParseFilePipeBuilder()
-        .addFileTypeValidator({ fileType: 'jpeg' || 'png' })
-        .addMaxSizeValidator({ maxSize: 5000 })
+        .addFileTypeValidator({ fileType: 'jpeg|jpg|png' })
+        .addMaxSizeValidator({ maxSize: 5000000 })
         .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
     )
     file: Express.Multer.File,
+    @Body() body: any,
   ) {
-    return this.managemenetService.addImage(file);
+    return this.managemenetService.addImage(file, body);
+  }
+
+  @Post('articleimageremove/:id')
+  removeArticleImage(@Param('id') id: string) {
+    return this.managemenetService.removeArticleImage(id);
   }
 
   @Post('/articleremove/:id')
   removeArticle(@Param('id') id: string) {
     return this.managemenetService.removeArticle(id);
   }
+
+  // article image delete
+
   // schedule end_Points
 
-  @UseGuards(AuthenticatedGuard, RolesGuard)
-  @Roles('ADMIN')
   @Post('/addschedule')
   addSchedule(@Body() dto: ScheduleDto) {
     return this.managemenetService.addSchedule(dto);
+  }
+
+  @Post('scheduleimage')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadScheduleImage(
+    @UploadedFile(
+      new ParseFilePipeBuilder()
+        .addFileTypeValidator({ fileType: 'jpeg' || 'png' })
+        .addMaxSizeValidator({ maxSize: 5000000 })
+        .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
+    )
+    file: Express.Multer.File,
+    @Body() body: any,
+  ) {
+    return this.managemenetService.addScheduleImage(file, body);
   }
 
   @Post('/scheduleremove/:id')

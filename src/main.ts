@@ -6,9 +6,11 @@ import * as session from 'express-session';
 import * as passport from 'passport';
 import { default as Redis } from 'ioredis';
 import * as connectRedis from 'connect-redis';
+import * as bodyParser from 'body-parser';
+
 import * as cookieParser from 'cookie-parser';
 import { NestExpressApplication } from '@nestjs/platform-express';
-
+import * as multer from 'multer';
 // import { createClient } from 'redis';
 
 // const redisClient = createClient({
@@ -19,8 +21,14 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 // const RedisStore = connectRedis(session);
 // const redisClient = new Redis();
 
+multer({ dest: 'uploads/' });
+
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    bodyParser: false,
+  });
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.enableCors({
     origin: process.env.ORIGIN,
     methods: 'GET, PUT, POST, DELETE , OPTIONS',
@@ -28,6 +36,11 @@ async function bootstrap() {
     preflightContinue: false,
     credentials: true,
   });
+  app.use(
+    bodyParser.urlencoded({
+      extended: true,
+    }),
+  );
   app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe());
   app.set('trust proxy', 1);

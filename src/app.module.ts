@@ -10,10 +10,16 @@ import { ConfigModule } from '@nestjs/config';
 import { ManagementModule } from './management/management.module';
 import { ArticlesModule } from './articles/articles.module';
 import { SchedulesModule } from './schedules/schedules.module';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
     AuthModule,
+    MulterModule.register({
+      limits: {
+        fileSize: 1024 * 1024, // set your desired file size limit
+      },
+    }),
     ConfigModule.forRoot(),
     UserModule,
     ExamModule,

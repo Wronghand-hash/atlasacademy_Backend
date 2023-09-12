@@ -1,14 +1,9 @@
 /* eslint-disable prettier/prettier */
+import { IsNotEmpty } from 'class-validator';
+
 export class ScheduleDto {
+  @IsNotEmpty({ message: 'لطفا نام برنامه را وارد نمایید' })
   title: string;
-
-  teacher: string;
-
-  level: string;
-
-  days: string;
-
-  time: string;
 
   schedule_id: string;
 }

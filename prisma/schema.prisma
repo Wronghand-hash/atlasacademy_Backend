@@ -37,8 +37,7 @@ model Categories {
   createdAt DateTime @default(now())
   updateAt  DateTime @updatedAt
   title     String
-
-  Exams Exams[]
+  Exams     Exams[]
 }
 
 model Articles {
@@ -65,14 +64,12 @@ model ArticleImage {
 }
 
 model Schedule {
-  id         Int      @id @default(autoincrement())
-  create_at  DateTime @default(now())
-  updated_at DateTime @updatedAt
-  title      String
-  days       String
-  time       String
-  teacher    String
-  level      String
+  id           Int      @id @default(autoincrement())
+  create_at    DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  title        String
+  image_buffer String?
+  image_name   String?
 }
 
 enum roles {

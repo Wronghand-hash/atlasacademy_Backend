@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { ManagementController } from './management.controller';
 import { ManagementService } from './management.service';

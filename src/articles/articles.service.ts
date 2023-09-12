@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
@@ -23,6 +23,13 @@ export class ArticlesService {
       where: {
         id: Number(id),
       },
+      select: {
+        id: true,
+        title: true,
+        authur: true,
+        first_header: true,
+        ArticleImage: true,
+      },
     });
 
     return { article: article };
@@ -34,6 +41,9 @@ export class ArticlesService {
         id: Number(id),
       },
     });
+    if (!image) {
+      return new ForbiddenException('image not found');
+    }
     const imageDataURL = `data:image/jpeg;base64,${image.buffer}`;
     return { image: imageDataURL };
   }
