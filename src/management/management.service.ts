@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ArticleDto } from './dto/ArticleDto';
@@ -59,7 +60,7 @@ export class ManagementService {
   // schedule functions
 
   async addSchedule(dto: ScheduleDto) {
-    const schedule = await this.prismaService.schedule.create({
+    const schedule = await this.prismaService.schedules.create({
       data: {
         title: dto.title,
       },
@@ -68,7 +69,7 @@ export class ManagementService {
   }
 
   async updateSchedule(dto: ScheduleDto) {
-    const schedule = await this.prismaService.schedule.updateMany({
+    const schedule = await this.prismaService.schedules.updateMany({
       where: {
         id: Number(dto.schedule_id),
       },
@@ -82,7 +83,7 @@ export class ManagementService {
 
   async addScheduleImage(file: any, body: any) {
     console.log(body.scheduleId);
-    const scheduleImage = await this.prismaService.schedule.updateMany({
+    const scheduleImage = await this.prismaService.schedules.updateMany({
       where: {
         id: Number(body.scheduleId),
       },
@@ -96,7 +97,7 @@ export class ManagementService {
   }
 
   async removeSchedule(id: string) {
-    const schedule = await this.prismaService.schedule.delete({
+    const schedule = await this.prismaService.schedules.delete({
       where: {
         id: Number(id),
       },

@@ -7,13 +7,13 @@ export class SchedulesService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async getSchedules() {
-    const schedules = await this.prismaService.schedule.findMany({});
+    const schedules = await this.prismaService.schedules.findMany({});
 
     return { schedules: schedules };
   }
 
   async getScheduleById(id: string) {
-    const schedule = await this.prismaService.schedule.findUnique({
+    const schedule = await this.prismaService.schedules.findUnique({
       where: {
         id: Number(id),
       },
