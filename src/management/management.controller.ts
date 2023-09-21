@@ -20,6 +20,7 @@ import { AuthenticatedGuard } from 'src/auth/guards/authenticated.guard';
 import { RolesGuard } from 'src/auth/guards/roleBase.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Express } from 'express';
+import { VideosDto } from './dto/VideoDto';
 
 @Controller('management')
 export class ManagementController {
@@ -100,5 +101,20 @@ export class ManagementController {
   @Post('/scheduleremove/:id')
   removeSchedule(@Param('id') id: string) {
     return this.managemenetService.removeSchedule(id);
+  }
+
+  // video management
+  @Post('/addvideo')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadVideo(
+    @UploadedFile(
+      new ParseFilePipeBuilder().build({
+        errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+      }),
+    )
+    file: Express.Multer.File,
+    dto: VideosDto,
+  ) {
+    return this.managemenetService.addVideo(file, dto);
   }
 }

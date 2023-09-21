@@ -10,6 +10,11 @@ export class ArticlesController {
     return this.articleService.getAllArticles();
   }
 
+  @Get('fourarticle')
+  getFourArticles() {
+    return this.articleService.getFourArticles();
+  }
+
   @Get(':id')
   getArticleById(@Param('id') id: string) {
     return this.articleService.getArticleById(id);

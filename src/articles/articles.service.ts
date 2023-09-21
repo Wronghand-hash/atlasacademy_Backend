@@ -18,6 +18,23 @@ export class ArticlesService {
     return { msg: 'all the articels', articles: articles };
   }
 
+  async getFourArticles() {
+    const articles = await this.prismaService.articles.findMany({
+      take: 4,
+      select: {
+        id: true,
+        title: true,
+        authur: true,
+        first_header: true,
+        ArticleImage: true,
+      },
+      orderBy: {
+        id: 'desc',
+      },
+    });
+    return { msg: 'all the articels', articles: articles };
+  }
+
   async getArticleById(id: string) {
     const article = await this.prismaService.articles.findUnique({
       where: {
@@ -29,6 +46,11 @@ export class ArticlesService {
         authur: true,
         first_header: true,
         ArticleImage: true,
+        first_body: true,
+        second_body: true,
+        second_header: true,
+        third_body: true,
+        third_header: true,
       },
     });
 

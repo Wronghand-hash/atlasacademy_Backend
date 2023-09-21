@@ -23,6 +23,12 @@ model User {
   phoneNumber          String?
 }
 
+enum roles {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
 model Exams {
   id          Int        @id @default(autoincrement())
   createdAt   DateTime   @default(now())
@@ -73,8 +79,11 @@ model ArticleImage {
   article    Articles @relation(fields: [article_id], references: [id])
 }
 
-enum roles {
-  STUDENT
-  TEACHER
-  ADMIN
+model Videos {
+  id          Int      @id @default(autoincrement())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  file        Bytes
+  title       String?
+  description String?
 }

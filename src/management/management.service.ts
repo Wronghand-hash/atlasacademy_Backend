@@ -1,9 +1,8 @@
-/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ArticleDto } from './dto/ArticleDto';
 import { ScheduleDto } from './dto/ScheduleDto';
-
+import { VideosDto } from './dto/VideoDto';
 @Injectable()
 export class ManagementService {
   constructor(private readonly prismaService: PrismaService) {}
@@ -104,5 +103,14 @@ export class ManagementService {
     });
 
     return { msg: 'برنامه حذف گردید' };
+  }
+
+  async addVideo(file: any, dto: VideosDto) {
+    // console.log(file);
+    // const video = await this.prismaService.videos.create({
+    //   title: dto.title,
+    //   file: file.buffer,
+    //   description: dto.description,
+    // });
   }
 }
