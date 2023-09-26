@@ -87,3 +87,8 @@ model Videos {
   title       String?
   description String?
 }
+
+model VideoFile {
+  id   Int     @id @default(autoincrement())
+  file String?
+}

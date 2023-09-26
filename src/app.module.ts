@@ -11,6 +11,7 @@ import { ManagementModule } from './management/management.module';
 import { ArticlesModule } from './articles/articles.module';
 import { SchedulesModule } from './schedules/schedules.module';
 import { MulterModule } from '@nestjs/platform-express';
+import { VideosModule } from './videos/videos.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { MulterModule } from '@nestjs/platform-express';
     ManagementModule,
     ArticlesModule,
     SchedulesModule,
+    VideosModule,
   ],
   controllers: [AppController],
   providers: [AppService],

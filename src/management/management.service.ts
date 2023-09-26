@@ -105,12 +105,27 @@ export class ManagementService {
     return { msg: 'برنامه حذف گردید' };
   }
 
-  async addVideo(file: any, dto: VideosDto) {
-    // console.log(file);
-    // const video = await this.prismaService.videos.create({
-    //   title: dto.title,
-    //   file: file.buffer,
-    //   description: dto.description,
-    // });
+  // video management functions
+
+  async addVideo(file: any, body: any) {
+    console.log(body);
+    const video = await this.prismaService.videos.create({
+      data: {
+        title: body.title,
+        file: file.buffer.toString('base64'),
+        description: 'monkey D luffy',
+      },
+    });
+
+    return { video: video };
+  }
+
+  async removeVideo(id: string) {
+    const video = await this.prismaService.videos.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    return { msg: 'ویدیو حذف شد' };
   }
 }
