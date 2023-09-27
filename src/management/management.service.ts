@@ -113,7 +113,7 @@ export class ManagementService {
       data: {
         title: body.title,
         file: file.buffer.toString('base64'),
-        description: 'monkey D luffy',
+        description: body.description,
       },
     });
 

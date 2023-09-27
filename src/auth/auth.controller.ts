@@ -12,17 +12,19 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.services';
 import { AuthDto } from './dto/index';
+import { SignupDto } from './dto/index';
 import { LocalAuthGuard } from './localAuthGuard';
 import { Response } from 'express';
 import { Roles } from './decorators/role.decorator';
 import { RolesGuard } from './guards/roleBase.guard';
+import { AuthenticatedGuard } from './guards/authenticated.guard';
 
 @Controller()
 export class AuthController {
   constructor(private authService: AuthService) {}
 
   @Post('signup')
-  signup(@Body() dto: AuthDto) {
+  signup(@Body() dto: SignupDto) {
     return this.authService.signup(dto);
   }
 
@@ -32,16 +34,16 @@ export class AuthController {
   }
 
   @Post('isauthenticated')
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(AuthenticatedGuard)
   isAuthenticated(@Res({ passthrough: true }) res: Response) {
     return { msg: 'authenticated true' };
   }
 
-  @Get('test')
+  @Post('ischeck')
   @Roles('ADMIN') // Only admin role allowed
-  @UseGuards(LocalAuthGuard, RolesGuard)
+  @UseGuards(AuthenticatedGuard, RolesGuard)
   loggingSomrhing(@Res({ passthrough: true }) res: Response) {
-    return { msg: 'only admin can visit' };
+    return { check: true };
   }
 
   // login method

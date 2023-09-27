@@ -5,7 +5,7 @@ import {
   ForbiddenException,
 } from '@nestjs/common';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
-import { AuthDto } from './dto/index';
+import { AuthDto, SignupDto } from './dto/index';
 import * as argon from 'argon2';
 import { PrismaService } from '../prisma/prisma.service';
 
@@ -13,7 +13,7 @@ import { PrismaService } from '../prisma/prisma.service';
 export class AuthService {
   constructor(private prisma: PrismaService) {}
 
-  async signup(dto: AuthDto) {
+  async signup(dto: SignupDto) {
     const hash = await argon.hash(dto.password);
     try {
       const user = await this.prisma.user.create({
