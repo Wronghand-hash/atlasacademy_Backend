@@ -10,6 +10,13 @@ export class VideosService {
       orderBy: {
         id: 'desc',
       },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        image_buffer: true,
+        file: true,
+      },
     });
 
     return { videos: videos };
@@ -19,6 +26,12 @@ export class VideosService {
     const video = await this.prismaService.videos.findUnique({
       where: {
         id: Number(id),
+      },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        file: true,
       },
     });
     return { video: video };

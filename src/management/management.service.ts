@@ -120,6 +120,20 @@ export class ManagementService {
     return { video: video };
   }
 
+  async addVideoImage(file: any, body: any) {
+    console.log(body.videoId);
+    const videoImage = await this.prismaService.videos.updateMany({
+      where: {
+        id: Number(body.videoId),
+      },
+      data: {
+        image_buffer: file.buffer.toString('base64'),
+      },
+    });
+
+    return { msg: 'عکس اضافه شد' };
+  }
+
   async removeVideo(id: string) {
     const video = await this.prismaService.videos.delete({
       where: {

@@ -110,7 +110,7 @@ export class ManagementController {
   uploadScheduleImage(
     @UploadedFile(
       new ParseFilePipeBuilder()
-        .addFileTypeValidator({ fileType: 'jpeg' || 'png' })
+        .addFileTypeValidator({ fileType: 'jpeg|jpg|png' })
         .addMaxSizeValidator({ maxSize: 5000000 })
         .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
     )
@@ -128,8 +128,7 @@ export class ManagementController {
   }
 
   // video management
-  @Roles('ADMIN') // Only admin role allowed
-  @UseGuards(AuthenticatedGuard, RolesGuard)
+
   @Post('/addvideo')
   @UseInterceptors(FileInterceptor('file'))
   uploadVideo(
@@ -149,5 +148,20 @@ export class ManagementController {
   @Post('/videoremove/:id')
   removeVideo(@Param('id') id: string) {
     return this.managemenetService.removeVideo(id);
+  }
+
+  @Post('videoimage')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadVideoImage(
+    @UploadedFile(
+      new ParseFilePipeBuilder()
+        .addFileTypeValidator({ fileType: 'jpeg|jpg|png' })
+        .addMaxSizeValidator({ maxSize: 5000000 })
+        .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
+    )
+    file: Express.Multer.File,
+    @Body() body: any,
+  ) {
+    return this.managemenetService.addVideoImage(file, body);
   }
 }

@@ -80,12 +80,13 @@ model ArticleImage {
 }
 
 model Videos {
-  id          Int      @id @default(autoincrement())
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
-  file        Bytes
-  title       String?
-  description String?
+  id           Int      @id @default(autoincrement())
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  image_buffer String?
+  file         Bytes
+  title        String?
+  description  String?
 }
 
 model VideoFile {
