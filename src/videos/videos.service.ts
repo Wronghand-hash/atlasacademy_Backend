@@ -21,6 +21,6 @@ export class VideosService {
         id: Number(id),
       },
     });
-    return { video: video, file: video.file };
+    return { video: video };
   }
 }
