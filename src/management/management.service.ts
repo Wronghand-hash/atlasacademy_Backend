@@ -16,6 +16,7 @@ export class ManagementService {
         first_header: dto.first_header,
         first_body: dto.first_body,
         second_header: dto.second_header,
+        second_body: dto.second_body,
         third_header: dto.third_header,
         third_body: dto.third_body,
         authur: dto.authur,
