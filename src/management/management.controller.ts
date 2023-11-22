@@ -129,6 +129,11 @@ export class ManagementController {
 
   // video management
 
+  @Get('/videos')
+  getVideos() {
+    return this.managemenetService.getAllVideos();
+  }
+
   @Post('/addvideo')
   @UseInterceptors(FileInterceptor('file'))
   uploadVideo(

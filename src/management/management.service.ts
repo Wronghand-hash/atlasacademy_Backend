@@ -108,6 +108,22 @@ export class ManagementService {
 
   // video management functions
 
+  async getAllVideos() {
+    const videos = await this.prismaService.videos.findMany({
+      orderBy: {
+        id: 'desc',
+      },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        image_buffer: true,
+      },
+    });
+
+    return { videos: videos };
+  }
+
   async addVideo(file: any, body: any) {
     console.log(body);
     const video = await this.prismaService.videos.create({
