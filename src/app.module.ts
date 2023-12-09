@@ -12,6 +12,8 @@ import { ArticlesModule } from './articles/articles.module';
 import { SchedulesModule } from './schedules/schedules.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { VideosModule } from './videos/videos.module';
+import { NewsModule } from './news/news.module';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
@@ -22,6 +24,7 @@ import { VideosModule } from './videos/videos.module';
       },
     }),
     ConfigModule.forRoot(),
+    CacheModule.register(),
     UserModule,
     ExamModule,
     PrismaModule,
@@ -29,6 +32,7 @@ import { VideosModule } from './videos/videos.module';
     ArticlesModule,
     SchedulesModule,
     VideosModule,
+    NewsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

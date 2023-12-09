@@ -22,6 +22,7 @@ import { RolesGuard } from 'src/auth/guards/roleBase.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Express, Response } from 'express';
 import { VideosDto } from './dto/VideoDto';
+import { NewsDto } from './dto/NewsDto';
 
 @Controller('management')
 export class ManagementController {
@@ -168,5 +169,45 @@ export class ManagementController {
     @Body() body: any,
   ) {
     return this.managemenetService.addVideoImage(file, body);
+  }
+
+  // news end points
+
+  @Roles('ADMIN') // Only admin role allowed
+  @UseGuards(AuthenticatedGuard, RolesGuard)
+  @Post('/addnews')
+  addNews(@Body() dto: NewsDto, @Res({ passthrough: true }) res: Response) {
+    return this.managemenetService.addNews(dto);
+  }
+
+  @Roles('ADMIN') // Only admin role allowed
+  @UseGuards(AuthenticatedGuard, RolesGuard)
+  @Post('newsimage')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadNewsImage(
+    @UploadedFile(
+      new ParseFilePipeBuilder()
+        .addFileTypeValidator({ fileType: 'jpeg|jpg|png' })
+        .addMaxSizeValidator({ maxSize: 5000000 })
+        .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
+    )
+    file: Express.Multer.File,
+    @Body() body: any,
+  ) {
+    return this.managemenetService.addNewsImage(file, body);
+  }
+
+  @Roles('ADMIN') // Only admin role allowed
+  @UseGuards(AuthenticatedGuard, RolesGuard)
+  @Post('newsimageremove/:id')
+  removeNewsImage(@Param('id') id: string) {
+    return this.managemenetService.removeNewsImage(id);
+  }
+
+  @Roles('ADMIN') // Only admin role allowed
+  @UseGuards(AuthenticatedGuard, RolesGuard)
+  @Post('/newsremove/:id')
+  removeNews(@Param('id') id: string) {
+    return this.managemenetService.removeNews(id);
   }
 }

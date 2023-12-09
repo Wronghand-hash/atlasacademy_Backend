@@ -79,6 +79,29 @@ model ArticleImage {
   article    Articles @relation(fields: [article_id], references: [id])
 }
 
+model News {
+  id            Int          @id @default(autoincrement())
+  created_at    DateTime     @default(now())
+  updated_at    DateTime     @updatedAt
+  title         String
+  authur        String
+  first_header  String
+  first_body    String
+  second_header String?
+  second_body   String?
+  third_header  String?
+  third_body    String?
+  NewsImages    NewsImages[]
+}
+
+model NewsImages {
+  id       Int    @id @default(autoincrement())
+  filename String
+  data     String
+  news_id  Int
+  news     News   @relation(fields: [news_id], references: [id])
+}
+
 model Videos {
   id           Int      @id @default(autoincrement())
   created_at   DateTime @default(now())

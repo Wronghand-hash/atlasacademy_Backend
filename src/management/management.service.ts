@@ -3,6 +3,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { ArticleDto } from './dto/ArticleDto';
 import { ScheduleDto } from './dto/ScheduleDto';
 import { VideosDto } from './dto/VideoDto';
+import { NewsDto } from './dto/NewsDto';
 @Injectable()
 export class ManagementService {
   constructor(private readonly prismaService: PrismaService) {}
@@ -158,5 +159,55 @@ export class ManagementService {
       },
     });
     return { msg: 'ویدیو حذف شد' };
+  }
+
+  // news functions
+
+  async addNews(dto: NewsDto) {
+    const news = await this.prismaService.news.create({
+      data: {
+        title: dto.title,
+        first_header: dto.first_header,
+        first_body: dto.first_body,
+        second_header: dto.second_header,
+        second_body: dto.second_body,
+        third_header: dto.third_header,
+        third_body: dto.third_body,
+        authur: dto.authur,
+      },
+    });
+    return { msg: 'مقاله اضافه شد', news: news };
+  }
+
+  async addNewsImage(file: any, body: any) {
+    console.log(body);
+    const image = await this.prismaService.newsImages.create({
+      data: {
+        data: file.buffer.toString('base64'),
+        filename: file.originalname,
+        news_id: Number(body.newsId),
+      },
+    });
+
+    return { msg: 'عکس اضافه شد' };
+  }
+
+  async removeNewsImage(id: string) {
+    const image = await this.prismaService.newsImages.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    return { msg: 'عکس حذف گردید' };
+  }
+
+  async removeNews(id: string) {
+    const article = await this.prismaService.news.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+
+    return { msg: 'مقاله حذف گردید ' };
   }
 }

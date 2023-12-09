@@ -36,7 +36,7 @@ export class AuthController {
   @Post('isauthenticated')
   @UseGuards(AuthenticatedGuard)
   isAuthenticated(@Res({ passthrough: true }) res: Response) {
-    return { msg: 'authenticated true' };
+    return { check: true };
   }
 
   @Post('ischeck')
