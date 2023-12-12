@@ -10,6 +10,19 @@ export class ManagementService {
 
   // article functions
 
+  async getArticles() {
+    const articles = await this.prismaService.articles.findMany({
+      select: {
+        id: true,
+        title: true,
+        authur: true,
+        first_header: true,
+        ArticleImage: { select: { id: true, article_id: true } },
+      },
+    });
+    return { msg: 'all the articels', articles: articles };
+  }
+
   async addArticle(dto: ArticleDto) {
     const Article = await this.prismaService.articles.create({
       data: {
@@ -162,6 +175,19 @@ export class ManagementService {
   }
 
   // news functions
+
+  async getNews() {
+    const news = await this.prismaService.news.findMany({
+      select: {
+        id: true,
+        title: true,
+        authur: true,
+        first_header: true,
+        NewsImages: { select: { id: true, news_id: true } },
+      },
+    });
+    return { msg: 'all news ', news: news };
+  }
 
   async addNews(dto: NewsDto) {
     const news = await this.prismaService.news.create({

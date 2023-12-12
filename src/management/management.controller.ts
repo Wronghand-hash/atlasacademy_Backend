@@ -45,6 +45,12 @@ export class ManagementController {
   }
 
   // article end_Points
+
+  @Get('/articles')
+  getArticles() {
+    return this.managemenetService.getArticles();
+  }
+
   @Roles('ADMIN') // Only admin role allowed
   @UseGuards(AuthenticatedGuard, RolesGuard)
   @Post('/addarticle')
@@ -172,6 +178,11 @@ export class ManagementController {
   }
 
   // news end points
+
+  @Get('/news')
+  getNews() {
+    return this.managemenetService.getNews();
+  }
 
   @Roles('ADMIN') // Only admin role allowed
   @UseGuards(AuthenticatedGuard, RolesGuard)
