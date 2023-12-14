@@ -10,6 +10,16 @@ export class VideosController {
     return this.videoService.getAllVideos();
   }
 
+  @Get('/videos')
+  getVideoDetail() {
+    return this.videoService.getVideoDetails();
+  }
+
+  @Get('/latest')
+  getLatest() {
+    return this.videoService.getLatestVideo();
+  }
+
   @Get(':id')
   getVideoById(@Param('id') id: string) {
     return this.videoService.getVideoById(id);

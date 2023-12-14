@@ -22,6 +22,40 @@ export class VideosService {
     return { videos: videos };
   }
 
+  async getLatestVideo() {
+    const video = await this.prismaService.videos.findMany({
+      orderBy: {
+        id: 'desc',
+      },
+      take: 1,
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        image_buffer: true,
+        file: true,
+      },
+    });
+
+    return { video: video };
+  }
+
+  async getVideoDetails() {
+    const videos = await this.prismaService.videos.findMany({
+      orderBy: {
+        id: 'desc',
+      },
+      skip: 1,
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        image_buffer: true,
+      },
+    });
+    return { videos: videos };
+  }
+
   async getVideoById(id: string) {
     const video = await this.prismaService.videos.findUnique({
       where: {
