@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -33,7 +34,7 @@ export class VideosService {
         title: true,
         description: true,
         image_buffer: true,
-        file: true,
+        file: false,
       },
     });
 
