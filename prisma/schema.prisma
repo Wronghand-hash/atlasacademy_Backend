@@ -94,6 +94,52 @@ model News {
   NewsImages    NewsImages[]
 }
 
+model Books {
+  id          Int           @id @default(autoincrement())
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @updatedAt
+  title       String
+  authur      String
+  price       String?
+  description String
+  file        String
+  BooksImages BooksImages[]
+}
+
+model BooksImages {
+  id           Int      @id @default(autoincrement())
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  filename     String
+  data         String
+  book_id      Int
+  books        Books    @relation(fields: [book_id], references: [id])
+  audioBooksId Int?
+}
+
+model AudioBooks {
+  id               Int                @id @default(autoincrement())
+  created_at       DateTime           @default(now())
+  updated_at       DateTime           @updatedAt
+  title            String
+  authur           String
+  price            String?
+  description      String
+  file             String
+  filename         String
+  AudioBooksImages AudioBooksImages[]
+}
+
+model AudioBooksImages {
+  id           Int        @id @default(autoincrement())
+  created_at   DateTime   @default(now())
+  updated_at   DateTime   @updatedAt
+  filename     String
+  data         String
+  audioBook_id Int
+  AudioBooks   AudioBooks @relation(fields: [audioBook_id], references: [id])
+}
+
 model NewsImages {
   id       Int    @id @default(autoincrement())
   filename String
@@ -115,4 +161,31 @@ model Videos {
 model VideoFile {
   id   Int     @id @default(autoincrement())
   file String?
+}
+
+model Announcements {
+  id          Int      @id @default(autoincrement())
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  title       String
+  winner      String
+  description String?
+}
+
+model ImageGallery {
+  id            Int             @id @default(autoincrement())
+  created_at    DateTime        @default(now())
+  updated_at    DateTime        @updatedAt
+  title         String
+  GalleryImages GalleryImages[]
+}
+
+model GalleryImages {
+  id           Int          @id @default(autoincrement())
+  created_at   DateTime     @default(now())
+  updated_at   DateTime     @updatedAt
+  file         String
+  gallery_id   Int
+  filename     String?
+  imageGallery ImageGallery @relation(fields: [gallery_id], references: [id])
 }
