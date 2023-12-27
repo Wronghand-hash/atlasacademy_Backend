@@ -14,6 +14,12 @@ import { MulterModule } from '@nestjs/platform-express';
 import { VideosModule } from './videos/videos.module';
 import { NewsModule } from './news/news.module';
 import { CacheModule } from '@nestjs/cache-manager';
+import { BooksModule } from './books/books.module';
+import { AudioBooksModule } from './audio-books/audio-books.module';
+import { AnnouncementsService } from './announcements/announcements.service';
+import { AnnouncementsController } from './announcements/announcements.controller';
+import { AnnouncementsModule } from './announcements/announcements.module';
+import { ImageGalleryModule } from './image-gallery/image-gallery.module';
 
 @Module({
   imports: [
@@ -33,8 +39,12 @@ import { CacheModule } from '@nestjs/cache-manager';
     SchedulesModule,
     VideosModule,
     NewsModule,
+    BooksModule,
+    AudioBooksModule,
+    AnnouncementsModule,
+    ImageGalleryModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, AnnouncementsController],
+  providers: [AppService, AnnouncementsService],
 })
 export class AppModule {}
