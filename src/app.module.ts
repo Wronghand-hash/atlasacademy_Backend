@@ -20,6 +20,7 @@ import { AnnouncementsService } from './announcements/announcements.service';
 import { AnnouncementsController } from './announcements/announcements.controller';
 import { AnnouncementsModule } from './announcements/announcements.module';
 import { ImageGalleryModule } from './image-gallery/image-gallery.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { ImageGalleryModule } from './image-gallery/image-gallery.module';
     AudioBooksModule,
     AnnouncementsModule,
     ImageGalleryModule,
+    FilesModule,
   ],
   controllers: [AppController, AnnouncementsController],
   providers: [AppService, AnnouncementsService],
