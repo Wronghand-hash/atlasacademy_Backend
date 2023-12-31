@@ -17,6 +17,7 @@ export class BooksService {
         id: true,
         title: true,
         description: true,
+        category: true,
         BooksImages: true,
       },
     });
@@ -49,6 +50,7 @@ export class BooksService {
         id: true,
         title: true,
         description: true,
+        category: true,
       },
     });
     return { book: book };
@@ -100,6 +102,7 @@ export class BooksService {
         title: dto.title,
         authur: dto.author,
         file: file.buffer.toString('base64'),
+        category: dto.category,
         description: dto.description,
       },
     });

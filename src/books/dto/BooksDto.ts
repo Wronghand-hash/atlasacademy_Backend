@@ -5,5 +5,7 @@ export class BooksDto {
 
   author: string;
 
+  category: string
+
   description: string;
 }

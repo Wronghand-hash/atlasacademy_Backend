@@ -100,6 +100,7 @@ model Books {
   updated_at  DateTime      @updatedAt
   title       String
   authur      String
+  category    String?
   price       String?
   description String
   file        String
@@ -188,4 +189,15 @@ model GalleryImages {
   gallery_id   Int
   filename     String?
   imageGallery ImageGallery @relation(fields: [gallery_id], references: [id])
+}
+
+model Files {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  date       String?
+  file       String
+  title      String
+  filename   String?
+  group      String
 }
