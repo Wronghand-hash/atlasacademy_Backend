@@ -24,6 +24,25 @@ export class BooksService {
     return { books: books };
   }
 
+  async getBooksByCategory(body: any) {
+    const books = await this.prismaService.books.findMany({
+      orderBy: {
+        id: 'desc',
+      },
+      where: {
+        category: body.category,
+      },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        category: true,
+        BooksImages: true,
+      },
+    });
+    return { books: books };
+  }
+
   async getLastFourBooks() {
     // const books = await this.prismaService.books.findMany({
     //   take: 4,

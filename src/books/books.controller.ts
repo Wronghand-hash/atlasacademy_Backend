@@ -31,9 +31,9 @@ export class BooksController {
     return this.booksServices.getBooks();
   }
 
-  @Get('fourbooks')
-  getLastFour() {
-    return this.booksServices.getLastFourBooks();
+  @Post('/bycategory')
+  bycategory(@Body() body: any) {
+    return this.booksServices.getBooksByCategory(body);
   }
 
   @Get(':id')
