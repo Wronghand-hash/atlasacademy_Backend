@@ -83,6 +83,7 @@ model News {
   id            Int          @id @default(autoincrement())
   created_at    DateTime     @default(now())
   updated_at    DateTime     @updatedAt
+  category      String?
   title         String
   authur        String
   first_header  String
@@ -200,4 +201,15 @@ model Files {
   title      String
   filename   String?
   group      String
+}
+
+model registrations {
+  id           Int      @id @default(autoincrement())
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  fullname     String
+  phone_number String
+  birth_date   String
+  category     String
+  address      String
 }
