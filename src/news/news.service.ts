@@ -18,22 +18,27 @@ export class NewsService {
     return { msg: 'all news ', news: news };
   }
 
-  //   async () {
-  //     const articles = await this.prismaService.news.findMany({
-  //       take: 4,
-  //       select: {
-  //         id: true,
-  //         title: true,
-  //         authur: true,
-  //         first_header: true,
-  //         NewsImages: true,
-  //       },
-  //       orderBy: {
-  //         id: 'desc',
-  //       },
-  //     });
-  //     return { msg: 'all the articels', articles: articles };
-  //   }
+  async getNewsByCategory(category: string) {
+    const news = await this.prismaService.news.findMany({
+      where: {
+        category: category,
+      },
+      select: {
+        id: true,
+        title: true,
+        authur: true,
+        first_header: true,
+        NewsImages: true,
+        first_body: true,
+        second_body: true,
+        second_header: true,
+        third_body: true,
+        third_header: true,
+      },
+    });
+
+    return { news: news };
+  }
 
   async getNewsById(id: string) {
     const news = await this.prismaService.news.findUnique({

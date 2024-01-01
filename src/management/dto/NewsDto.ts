@@ -10,6 +10,8 @@ export class NewsDto {
   @IsNotEmpty({ message: 'لطفا تیتر اول مقاله را وارد نمایید' })
   first_header: string;
 
+  category: string;
+
   first_body: string;
 
   second_header: string;

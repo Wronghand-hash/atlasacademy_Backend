@@ -10,10 +10,11 @@ export class NewsController {
     return this.newsServices.getAllNews();
   }
 
-  //   @Get('fourarticle')
-  //   getFourArticles() {
-  //     return this.newsServices.getFourArticles();
-  //   }
+  @Get('/category/:category')
+  getNewsByCategory(@Param('category') category: string) {
+    console.log('corecto cuz');
+    return this.newsServices.getNewsByCategory(category);
+  }
 
   @Get(':id')
   getArticleById(@Param('id') id: string) {

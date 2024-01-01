@@ -200,6 +200,7 @@ export class ManagementService {
         third_header: dto.third_header,
         third_body: dto.third_body,
         authur: dto.authur,
+        category: dto.category,
       },
     });
     return { msg: 'مقاله اضافه شد', news: news };
