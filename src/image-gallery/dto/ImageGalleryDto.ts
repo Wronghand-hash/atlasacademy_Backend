@@ -2,4 +2,6 @@
 
 export class ImageGalleryDto {
   title: string;
+
+  date: string;
 }

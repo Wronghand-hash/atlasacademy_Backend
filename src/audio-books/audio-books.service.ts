@@ -41,7 +41,7 @@ export class AudioBooksService {
   }
 
   async getBooksById(id: string) {
-    const book = await this.prismaService.books.findUnique({
+    const book = await this.prismaService.audioBooks.findUnique({
       where: {
         id: Number(id),
       },
@@ -49,6 +49,7 @@ export class AudioBooksService {
         id: true,
         title: true,
         description: true,
+        date: true,
         file: true,
       },
     });
@@ -90,6 +91,7 @@ export class AudioBooksService {
         file: file.buffer.toString('base64'),
         filename: file.originalname,
         description: dto.description,
+        date: dto.date,
       },
     });
     return { audioBook: audioBook };

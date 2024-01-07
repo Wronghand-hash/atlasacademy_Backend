@@ -8,4 +8,6 @@ export class BooksDto {
   category: string;
 
   description: string;
+
+  date: string;
 }

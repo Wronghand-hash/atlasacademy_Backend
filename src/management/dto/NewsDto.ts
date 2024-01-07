@@ -21,4 +21,6 @@ export class NewsDto {
   third_header: string;
 
   third_body: string;
+
+  date: string;
 }

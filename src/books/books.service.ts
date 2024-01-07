@@ -37,6 +37,7 @@ export class BooksService {
         title: true,
         description: true,
         category: true,
+        date: true,
         BooksImages: true,
       },
     });
@@ -68,6 +69,7 @@ export class BooksService {
       select: {
         id: true,
         title: true,
+        date: true,
         description: true,
         category: true,
       },
@@ -123,6 +125,7 @@ export class BooksService {
         file: file.buffer.toString('base64'),
         category: dto.category,
         description: dto.description,
+        date: dto.date,
       },
     });
     return { book: book };

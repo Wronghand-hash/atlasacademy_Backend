@@ -9,7 +9,7 @@ export class ArticleDto {
   authur: string;
   @IsNotEmpty({ message: 'لطفا تیتر اول مقاله را وارد نمایید' })
   first_header: string;
-  
+
   first_body: string;
 
   second_header: string;
@@ -19,4 +19,6 @@ export class ArticleDto {
   third_header: string;
 
   third_body: string;
+
+  date: string;
 }

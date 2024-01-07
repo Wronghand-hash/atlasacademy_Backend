@@ -51,6 +51,7 @@ export class ArticlesService {
         second_header: true,
         third_body: true,
         third_header: true,
+        date: true,
       },
     });
 

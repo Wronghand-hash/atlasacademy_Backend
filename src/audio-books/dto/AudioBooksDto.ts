@@ -6,4 +6,6 @@ export class AudioBooksDto {
   author: string;
 
   description: string;
+
+  date: string;
 }

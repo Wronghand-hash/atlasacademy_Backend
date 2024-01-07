@@ -68,6 +68,7 @@ model Articles {
   second_body   String?
   third_header  String?
   third_body    String?
+  date          String?
   ArticleImage  ArticleImage[]
 }
 
@@ -92,6 +93,7 @@ model News {
   second_body   String?
   third_header  String?
   third_body    String?
+  date          String?
   NewsImages    NewsImages[]
 }
 
@@ -105,6 +107,7 @@ model Books {
   price       String?
   description String
   file        String
+  date        String?
   BooksImages BooksImages[]
 }
 
@@ -127,6 +130,7 @@ model AudioBooks {
   authur           String
   price            String?
   description      String
+  date             String?
   file             String
   filename         String
   AudioBooksImages AudioBooksImages[]
@@ -155,6 +159,7 @@ model Videos {
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
   image_buffer String?
+  date         String?
   file         Bytes
   title        String?
   description  String?
@@ -179,6 +184,7 @@ model ImageGallery {
   created_at    DateTime        @default(now())
   updated_at    DateTime        @updatedAt
   title         String
+  date          String?
   GalleryImages GalleryImages[]
 }
 

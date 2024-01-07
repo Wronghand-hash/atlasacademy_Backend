@@ -34,6 +34,7 @@ export class ManagementService {
         third_header: dto.third_header,
         third_body: dto.third_body,
         authur: dto.authur,
+        date: dto.date,
       },
     });
     return { msg: 'مقاله اضافه شد', article: Article };
@@ -145,6 +146,7 @@ export class ManagementService {
         title: body.title,
         file: file.buffer.toString('base64'),
         description: body.description,
+        date: body.date,
       },
     });
 
@@ -201,6 +203,7 @@ export class ManagementService {
         third_body: dto.third_body,
         authur: dto.authur,
         category: dto.category,
+        date: dto.date,
       },
     });
     return { msg: 'مقاله اضافه شد', news: news };

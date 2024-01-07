@@ -52,6 +52,7 @@ export class VideosService {
         title: true,
         description: true,
         image_buffer: true,
+        date: true,
       },
     });
     return { videos: videos };
@@ -67,6 +68,7 @@ export class VideosService {
         title: true,
         description: true,
         file: true,
+        date: true,
       },
     });
     return { video: video };

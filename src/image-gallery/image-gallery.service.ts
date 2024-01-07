@@ -12,6 +12,7 @@ export class ImageGalleryService {
         id: true,
         title: true,
         GalleryImages: { select: { id: true } },
+        date: true,
       },
     });
     return { imageGalleries: galleries };
@@ -33,6 +34,7 @@ export class ImageGalleryService {
     const gallery = await this.prismaService.imageGallery.create({
       data: {
         title: dto.title,
+        date: dto.date,
       },
     });
     return { msg: 'گالری اضافه شد', gallery: gallery };
