@@ -218,4 +218,29 @@ model registrations {
   birth_date   String
   category     String
   address      String
+  line_number  String
+}
+
+model colleages {
+  id           Int      @id @default(autoincrement())
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  fullname     String
+  father_name  String
+  status       String
+  personal_id  String
+  phone_number String
+  birth_date   String
+  category     String
+  address      String
+  birth_place  String
+}
+
+model Managements {
+  id           Int      @id @default(autoincrement())
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  first_image  String?
+  second_image String?
+  third_image  String?
 }
