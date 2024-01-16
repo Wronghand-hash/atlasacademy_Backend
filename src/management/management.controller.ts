@@ -221,4 +221,51 @@ export class ManagementController {
   removeNews(@Param('id') id: string) {
     return this.managemenetService.removeNews(id);
   }
+
+  // management requests
+
+  @Post('/firstimage')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFirstImage(
+    @UploadedFile(
+      new ParseFilePipeBuilder()
+        .addFileTypeValidator({ fileType: 'jpeg|jpg|png' })
+        .addMaxSizeValidator({ maxSize: 5000000 })
+        .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
+    )
+    file: Express.Multer.File,
+    @Body() body: any,
+  ) {
+    return this.managemenetService.uploadFirstImage(file, body);
+  }
+
+  @Post('/secondimage')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadSecondImage(
+    @UploadedFile(
+      new ParseFilePipeBuilder()
+        .addFileTypeValidator({ fileType: 'jpeg|jpg|png' })
+        .addMaxSizeValidator({ maxSize: 5000000 })
+        .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
+    )
+    file: Express.Multer.File,
+    @Body() body: any,
+  ) {
+    return this.managemenetService.uploadSecondImage(file, body);
+  }
+
+  @Post('/thirdimage')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadThirdImage(
+    @UploadedFile(
+      new ParseFilePipeBuilder()
+        .addFileTypeValidator({ fileType: 'jpeg|jpg|png' })
+        .addMaxSizeValidator({ maxSize: 5000000 })
+        .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
+    )
+    file: Express.Multer.File,
+    @Body() body: any,
+  ) {
+    return this.managemenetService.uploadThirdImage(file, body);
+  }
 }

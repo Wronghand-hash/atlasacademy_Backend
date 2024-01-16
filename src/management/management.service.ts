@@ -240,4 +240,48 @@ export class ManagementService {
 
     return { msg: 'مقاله حذف گردید ' };
   }
+
+  // management functions
+
+  async uploadFirstImage(file: any, body: any) {
+    console.log(body);
+    const image = await this.prismaService.managements.update({
+      where: {
+        id: 1,
+      },
+      data: {
+        first_image: file.buffer.toString('base64'),
+      },
+    });
+
+    return { msg: 'عکس اضافه شد' };
+  }
+
+  async uploadSecondImage(file: any, body: any) {
+    console.log(body);
+    const image = await this.prismaService.managements.update({
+      where: {
+        id: 1,
+      },
+      data: {
+        second_image: file.buffer.toString('base64'),
+      },
+    });
+
+    return { msg: 'عکس اضافه شد' };
+  }
+
+  async uploadThirdImage(file: any, body: any) {
+    console.log(body);
+    const image = await this.prismaService.managements.update({
+      where: {
+        id: 1,
+      },
+      data: {
+        third_image: file.buffer.toString('base64'),
+      },
+    });
+
+    return { msg: 'عکس اضافه شد' };
+  }
 }
