@@ -10,6 +10,12 @@ export class ArticlesController {
     return this.articleService.getAllArticles();
   }
 
+  @Get('/category/:category')
+  getArticlesByCategory(@Param('category') category: string) {
+    console.log('corecto cuz');
+    return this.articleService.getArticlesByCategory(category);
+  }
+
   @Get('fourarticle')
   getFourArticles() {
     return this.articleService.getFourArticles();

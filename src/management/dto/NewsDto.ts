@@ -9,9 +9,9 @@ export class NewsDto {
   authur: string;
   @IsNotEmpty({ message: 'لطفا تیتر اول مقاله را وارد نمایید' })
   first_header: string;
-
+  @IsNotEmpty({ message: 'لطفا دسته بندی را انتخاب کنید' })
   category: string;
-
+  @IsNotEmpty({ message: 'پاراگراف اول را وارد کنید' })
   first_body: string;
 
   second_header: string;
@@ -21,6 +21,6 @@ export class NewsDto {
   third_header: string;
 
   third_body: string;
-
+  @IsNotEmpty({ message: 'لطفا تاریخ خبر را وارد کنید' })
   date: string;
 }

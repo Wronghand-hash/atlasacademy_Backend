@@ -69,6 +69,7 @@ model Articles {
   third_header  String?
   third_body    String?
   date          String?
+  category      String?
   ArticleImage  ArticleImage[]
 }
 
@@ -163,6 +164,7 @@ model Videos {
   file         Bytes
   title        String?
   description  String?
+  category     String?
 }
 
 model VideoFile {
@@ -222,18 +224,29 @@ model registrations {
 }
 
 model colleages {
-  id           Int      @id @default(autoincrement())
-  created_at   DateTime @default(now())
-  updated_at   DateTime @updatedAt
-  fullname     String
-  father_name  String
-  status       String
-  personal_id  String
-  phone_number String
-  birth_date   String
-  category     String
-  address      String
-  birth_place  String
+  id              Int               @id @default(autoincrement())
+  created_at      DateTime          @default(now())
+  updated_at      DateTime          @updatedAt
+  fullname        String
+  father_name     String
+  status          String
+  personal_id     String
+  phone_number    String
+  birth_date      String
+  category        String
+  address         String
+  birth_place     String
+  colleagesResume colleagesResume[]
+}
+
+model colleagesResume {
+  id            Int       @id @default(autoincrement())
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+  colleage_id   Int
+  file          String
+  colleage_name String
+  Colleage      colleages @relation(fields: [colleage_id], references: [id])
 }
 
 model Managements {

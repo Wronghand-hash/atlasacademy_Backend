@@ -9,7 +9,7 @@ export class ArticleDto {
   authur: string;
   @IsNotEmpty({ message: 'لطفا تیتر اول مقاله را وارد نمایید' })
   first_header: string;
-
+  @IsNotEmpty({ message: 'مقاله حداقل باید یک پاراگراف داشته باشد' })
   first_body: string;
 
   second_header: string;
@@ -20,5 +20,9 @@ export class ArticleDto {
 
   third_body: string;
 
+  @IsNotEmpty({ message: 'لطفا تاریخ مقاله را وارد نمایید' })
   date: string;
+
+  @IsNotEmpty({ message: 'لطفا دسته بندی مقاله را انتخاب کنید' })
+  category: string;
 }

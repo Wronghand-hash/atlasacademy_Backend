@@ -11,6 +11,12 @@ export class VideosController {
     return this.videoService.getAllVideos();
   }
 
+  @Get('/category/:category')
+  getVideosByCategory(@Param('category') category: string) {
+    console.log('corecto cuz');
+    return this.videoService.getVideosByCategory(category);
+  }
+
   @Get('/videos')
   getVideoDetail() {
     return this.videoService.getVideoDetails();

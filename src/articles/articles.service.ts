@@ -13,9 +13,34 @@ export class ArticlesService {
         authur: true,
         first_header: true,
         ArticleImage: true,
+        category: true,
       },
     });
     return { msg: 'all the articels', articles: articles };
+  }
+
+  async getArticlesByCategory(category: string) {
+    const articles = await this.prismaService.articles.findMany({
+      where: {
+        category: category,
+      },
+      select: {
+        id: true,
+        title: true,
+        authur: true,
+        first_header: true,
+        ArticleImage: true,
+        first_body: true,
+        second_body: true,
+        second_header: true,
+        third_body: true,
+        third_header: true,
+        date: true,
+        category: true,
+      },
+    });
+
+    return { articles: articles };
   }
 
   async getFourArticles() {

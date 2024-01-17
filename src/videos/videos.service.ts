@@ -41,6 +41,23 @@ export class VideosService {
     return { video: video };
   }
 
+  async getVideosByCategory(category: string) {
+    const videos = await this.prismaService.videos.findMany({
+      where: {
+        category: category,
+      },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        image_buffer: true,
+        file: false,
+      },
+    });
+
+    return { videos: videos };
+  }
+
   async getVideoDetails() {
     const videos = await this.prismaService.videos.findMany({
       orderBy: {

@@ -17,6 +17,8 @@ export class ManagementService {
         title: true,
         authur: true,
         first_header: true,
+        category: true,
+        date: true,
         ArticleImage: { select: { id: true, article_id: true } },
       },
     });
@@ -35,6 +37,7 @@ export class ManagementService {
         third_body: dto.third_body,
         authur: dto.authur,
         date: dto.date,
+        category: dto.category,
       },
     });
     return { msg: 'مقاله اضافه شد', article: Article };
@@ -133,6 +136,7 @@ export class ManagementService {
         title: true,
         description: true,
         image_buffer: true,
+        category: true,
       },
     });
 
@@ -147,6 +151,7 @@ export class ManagementService {
         file: file.buffer.toString('base64'),
         description: body.description,
         date: body.date,
+        category: body.category,
       },
     });
 
