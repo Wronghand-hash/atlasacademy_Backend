@@ -46,7 +46,7 @@ export class BooksController {
     const file = await this.booksServices.getBookFile(id);
 
     response.set({
-      'Content-Type': 'application/pdf',
+      'Content-Type': 'application/octet-stream',
       'Content-Disposition': 'attachment; filename="file.pdf"',
     });
 
