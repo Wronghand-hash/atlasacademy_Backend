@@ -21,6 +21,7 @@ import { AnnouncementsController } from './announcements/announcements.controlle
 import { AnnouncementsModule } from './announcements/announcements.module';
 import { ImageGalleryModule } from './image-gallery/image-gallery.module';
 import { FilesModule } from './files/files.module';
+import { RegistrationsModule } from './registrations/registrations.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { FilesModule } from './files/files.module';
     AnnouncementsModule,
     ImageGalleryModule,
     FilesModule,
+    RegistrationsModule,
   ],
   controllers: [AppController, AnnouncementsController],
   providers: [AppService, AnnouncementsService],
