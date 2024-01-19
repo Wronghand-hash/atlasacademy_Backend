@@ -60,6 +60,8 @@ export class BooksController {
 
   // books management
 
+  @Roles('ADMIN') // Only admin role allowed
+  @UseGuards(AuthenticatedGuard, RolesGuard)
   @Post('/management/addbook')
   @UseInterceptors(FileInterceptor('file'))
   uploadFilePdf(
@@ -74,8 +76,8 @@ export class BooksController {
     return this.booksServices.addBook(file, dto);
   }
 
-  // @Roles('ADMIN') // Only admin role allowed
-  // @UseGuards(AuthenticatedGuard, RolesGuard)
+  @Roles('ADMIN') // Only admin role allowed
+  @UseGuards(AuthenticatedGuard, RolesGuard)
   @Post('/management/bookimage')
   @UseInterceptors(FileInterceptor('file'))
   uploadBookImage(
@@ -91,15 +93,15 @@ export class BooksController {
     return this.booksServices.addImage(file, body);
   }
 
-  // @Roles('ADMIN') // Only admin role allowed
-  // @UseGuards(AuthenticatedGuard, RolesGuard)
+  @Roles('ADMIN') // Only admin role allowed
+  @UseGuards(AuthenticatedGuard, RolesGuard)
   @Post('/management/bookimageremove/:id')
   removeBookImage(@Param('id') id: string) {
     return this.booksServices.removeBookImage(id);
   }
 
-  // @Roles('ADMIN') // Only admin role allowed
-  // @UseGuards(AuthenticatedGuard, RolesGuard)
+  @Roles('ADMIN') // Only admin role allowed
+  @UseGuards(AuthenticatedGuard, RolesGuard)
   @Post('/management/bookremove/:id')
   removeBook(@Param('id') id: string) {
     return this.booksServices.removeBook(id);

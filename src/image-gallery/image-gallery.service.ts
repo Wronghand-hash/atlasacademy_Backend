@@ -13,9 +13,46 @@ export class ImageGalleryService {
         title: true,
         GalleryImages: { select: { id: true } },
         date: true,
+        category: true,
       },
     });
     return { imageGalleries: galleries };
+  }
+
+  async byCategory(category: string) {
+    const galleries = await this.prismaService.imageGallery.findMany({
+      orderBy: {
+        id: 'desc',
+      },
+      where: {
+        category: category,
+      },
+      select: {
+        id: true,
+        title: true,
+        category: true,
+        date: true,
+        GalleryImages: { take: 1 },
+      },
+    });
+    return { galleries: galleries };
+  }
+
+  async getGalleryById(id: string) {
+    const gallery = await this.prismaService.imageGallery.findUnique({
+      where: {
+        id: Number(id),
+      },
+      select: {
+        id: true,
+        title: true,
+        GalleryImages: { select: { id: true } },
+        date: true,
+        category: true,
+      },
+    });
+
+    return { gallery: gallery };
   }
 
   async getManagement() {
@@ -23,6 +60,7 @@ export class ImageGalleryService {
       select: {
         id: true,
         title: true,
+        category: true,
         GalleryImages: { select: { id: true } },
       },
     });
@@ -35,6 +73,7 @@ export class ImageGalleryService {
       data: {
         title: dto.title,
         date: dto.date,
+        category: dto.category,
       },
     });
     return { msg: 'گالری اضافه شد', gallery: gallery };
@@ -63,5 +102,24 @@ export class ImageGalleryService {
     }
     const imageDataURL = `data:image/jpeg;base64,${image.file}`;
     return { image: imageDataURL };
+  }
+
+  async removeGalleryImage(id: string) {
+    const image = await this.prismaService.galleryImages.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    return { msg: 'عکس حذف گردید' };
+  }
+
+  async removeGallery(id: string) {
+    const gallery = await this.prismaService.imageGallery.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+
+    return { msg: 'گالری حذف گردید ' };
   }
 }

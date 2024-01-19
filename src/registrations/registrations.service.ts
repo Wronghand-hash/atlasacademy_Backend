@@ -26,13 +26,28 @@ export class RegistrationsService {
     return { msg: 'درخواست اضافه شد', registration: registration };
   }
 
+  async getResume(id: string) {
+    const file = await this.prismaService.colleagesResume.findUnique({
+      where: {
+        colleage_id: Number(id),
+      },
+      select: {
+        id: true,
+        colleage_name: true,
+        file: true,
+      },
+    });
+    const pdfBuffer = Buffer.from(file.file, 'base64');
+    return pdfBuffer;
+  }
+
   async getRequests() {
     const requests = await this.prismaService.colleages.findMany({});
     return { requests: requests };
   }
 
   async addRequest(dto: CoopRequestDto) {
-    const requests = await this.prismaService.colleages.create({
+    const request = await this.prismaService.colleages.create({
       data: {
         fullname: dto.fullName,
         father_name: dto.fatherName,
@@ -45,6 +60,17 @@ export class RegistrationsService {
         birth_place: dto.birthPlace,
       },
     });
-    return { msg: 'درخواست اضافه شد', requests: requests };
+    return { msg: 'درخواست اضافه شد', request: request };
+  }
+
+  async addResume(file: any, body) {
+    const resume = await this.prismaService.colleagesResume.create({
+      data: {
+        colleage_id: Number(body.colleageId),
+        file: file.buffer.toString('base64'),
+        colleage_name: body.name,
+      },
+    });
+    return { resume: resume };
   }
 }

@@ -55,4 +55,11 @@ export class AuthController {
       msg: 'User logged in',
     };
   }
+
+  @Get('/logout')
+  logout(@Request() req, @Res() res: Response) {
+    req.logout(() => {
+      res.redirect('/');
+    });
+  }
 }

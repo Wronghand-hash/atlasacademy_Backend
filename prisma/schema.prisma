@@ -187,6 +187,7 @@ model ImageGallery {
   updated_at    DateTime        @updatedAt
   title         String
   date          String?
+  category      String?
   GalleryImages GalleryImages[]
 }
 
@@ -243,7 +244,7 @@ model colleagesResume {
   id            Int       @id @default(autoincrement())
   created_at    DateTime  @default(now())
   updated_at    DateTime  @updatedAt
-  colleage_id   Int
+  colleage_id   Int       @unique
   file          String
   colleage_name String
   Colleage      colleages @relation(fields: [colleage_id], references: [id])
