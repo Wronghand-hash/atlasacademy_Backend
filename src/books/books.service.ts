@@ -40,7 +40,7 @@ export class BooksService {
         category: true,
         date: true,
         file: false,
-        BooksImages: true,
+        BooksImages: { select: { id: true } },
       },
     });
     return { books: books };

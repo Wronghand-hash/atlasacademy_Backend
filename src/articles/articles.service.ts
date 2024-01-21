@@ -12,7 +12,7 @@ export class ArticlesService {
         title: true,
         authur: true,
         first_header: true,
-        ArticleImage: true,
+        ArticleImage: { select: { id: true } },
         category: true,
       },
     });
@@ -29,7 +29,11 @@ export class ArticlesService {
         title: true,
         authur: true,
         first_header: true,
-        ArticleImage: true,
+        ArticleImage: {
+          select: {
+            id: true,
+          },
+        },
         first_body: true,
         second_body: true,
         second_header: true,
@@ -51,7 +55,7 @@ export class ArticlesService {
         title: true,
         authur: true,
         first_header: true,
-        ArticleImage: true,
+        ArticleImage: { select: { id: true } },
       },
       orderBy: {
         id: 'desc',
@@ -70,7 +74,7 @@ export class ArticlesService {
         title: true,
         authur: true,
         first_header: true,
-        ArticleImage: true,
+        ArticleImage: { select: { id: true } },
         first_body: true,
         second_body: true,
         second_header: true,

@@ -29,7 +29,7 @@ export class RegistrationsService {
   async getResume(id: string) {
     const file = await this.prismaService.colleagesResume.findUnique({
       where: {
-        colleage_id: Number(id),
+        id: Number(id),
       },
       select: {
         id: true,
@@ -42,7 +42,20 @@ export class RegistrationsService {
   }
 
   async getRequests() {
-    const requests = await this.prismaService.colleages.findMany({});
+    const requests = await this.prismaService.colleages.findMany({
+      select: {
+        father_name: true,
+        fullname: true,
+        phone_number: true,
+        status: true,
+        birth_date: true,
+        birth_place: true,
+        category: true,
+        address: true,
+        personal_id: true,
+        colleagesResume: { select: { id: true } },
+      },
+    });
     return { requests: requests };
   }
 
