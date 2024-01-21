@@ -20,6 +20,26 @@ export class FilesService {
     });
     return { files: files };
   }
+
+  async byCategory(category: string) {
+    const files = await this.prismaService.files.findMany({
+      orderBy: {
+        id: 'desc',
+      },
+      where: {
+        group: category,
+      },
+      select: {
+        id: true,
+        title: true,
+        group: true,
+        date: true,
+        file: false,
+      },
+    });
+    return { files: files };
+  }
+
   async getFileById(id: string) {
     const file = await this.prismaService.files.findUnique({
       where: {

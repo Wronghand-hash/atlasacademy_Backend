@@ -17,6 +17,7 @@ export class BooksService {
         id: true,
         title: true,
         description: true,
+        file: false,
         category: true,
         BooksImages: true,
       },
@@ -38,6 +39,7 @@ export class BooksService {
         description: true,
         category: true,
         date: true,
+        file: false,
         BooksImages: true,
       },
     });

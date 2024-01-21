@@ -27,12 +27,19 @@ export class FilesController {
   getBooksById(@Param('id') id: string) {
     return this.fileService.getFileById(id);
   }
+
+  @Get('/bycategory/:category')
+  getFilesByCategory(@Param('category') category: string) {
+    console.log('corecto cuz');
+    return this.fileService.byCategory(category);
+  }
+
   @Get('file/:id')
   async getBookFile(@Res() response: Response, @Param('id') id: string) {
     const file = await this.fileService.getFile(id);
 
     response.set({
-      'Content-Type': 'application/pdf',
+      'Content-Type': 'application/octet-stream',
       'Content-Disposition': `attachment; filename=${file.filename}`,
     });
 
