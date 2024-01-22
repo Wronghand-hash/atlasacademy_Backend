@@ -81,6 +81,7 @@ export class ManagementService {
     const schedule = await this.prismaService.schedules.create({
       data: {
         title: dto.title,
+        category: dto.category,
       },
     });
     return { msg: 'برنامه اضافه شد', schedule: schedule };
