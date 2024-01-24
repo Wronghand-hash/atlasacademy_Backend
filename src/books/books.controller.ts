@@ -66,9 +66,12 @@ export class BooksController {
   @UseInterceptors(FileInterceptor('file'))
   uploadFilePdf(
     @UploadedFile(
-      new ParseFilePipeBuilder().build({
-        errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
-      }),
+      new ParseFilePipeBuilder()
+        .addFileTypeValidator({ fileType: 'pdf' })
+        .addMaxSizeValidator({ maxSize: 15304347 })
+        .build({
+          errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+        }),
     )
     file: Express.Multer.File,
     @Body() dto: BooksDto,
@@ -84,7 +87,7 @@ export class BooksController {
     @UploadedFile(
       new ParseFilePipeBuilder()
         .addFileTypeValidator({ fileType: 'jpeg|jpg|png' })
-        .addMaxSizeValidator({ maxSize: 5000000 })
+        .addMaxSizeValidator({ maxSize: 3304347 })
         .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
     )
     file: Express.Multer.File,

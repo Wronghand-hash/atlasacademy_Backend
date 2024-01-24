@@ -67,7 +67,7 @@ export class AudioBooksController {
     @UploadedFile(
       new ParseFilePipeBuilder()
         .addFileTypeValidator({ fileType: 'jpeg|jpg|png' })
-        .addMaxSizeValidator({ maxSize: 5000000 })
+        .addMaxSizeValidator({ maxSize: 1500000 })
         .build({ errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY }),
     )
     file: Express.Multer.File,

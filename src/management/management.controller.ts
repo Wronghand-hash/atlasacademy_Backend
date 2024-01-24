@@ -145,9 +145,11 @@ export class ManagementController {
   @UseInterceptors(FileInterceptor('file'))
   uploadVideo(
     @UploadedFile(
-      new ParseFilePipeBuilder().build({
-        errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
-      }),
+      new ParseFilePipeBuilder()
+        .addMaxSizeValidator({ maxSize: 15304347 })
+        .build({
+          errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+        }),
     )
     file: Express.Multer.File,
     @Body() body: any,
